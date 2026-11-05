@@ -1,0 +1,31 @@
+# Альтернатива systemd. Сначала подготовьте каталоги и секреты по docs/DOCKER.md.
+name: baltdom-radar
+services:
+  radar:
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    environment:
+      RADAR_ENV_FILE: /run/secrets/radar.env
+      LOCAL_LLM_URL: http://ollama:11434
+    volumes:
+      - ../data:/data
+      - ../config:/app/config
+      - /etc/radar/radar.env:/run/secrets/radar.env:ro
+    ports: ["127.0.0.1:8080:8080"]
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 90s
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    depends_on: [ollama]
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+  ollama:
+    image: ${OLLAMA_IMAGE:?Set OLLAMA_IMAGE to an approved version or digest}
+    volumes: [ollama:/root/.ollama]
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+volumes:
+  ollama:

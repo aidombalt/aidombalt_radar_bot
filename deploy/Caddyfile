@@ -1,0 +1,9 @@
+# Замените radar.example.ru на свой домен. Caddy устанавливается отдельно.
+# Веб-интерфейс закрыт снаружи. Для него используйте SSH-туннель из инструкции.
+radar.example.ru {
+    @bridge path /api/brain/* /health /api/max/webhook
+    handle @bridge {
+        reverse_proxy 127.0.0.1:8080
+    }
+    respond "Forbidden" 403
+}

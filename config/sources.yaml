@@ -1,0 +1,129 @@
+# Реестр источников. Проверено 23.09.2026 (✓ — адрес подтверждён официальным сайтом/публикацией).
+# tier: hot (каждые 5 мин) · warm (15 мин) · cold (3 ч)
+# where: server — опрашивает сервер в РФ (госсайты блокируют зарубежные IP: gov.spb.ru, gorod.gov.spb.ru)
+#        colab  — опрашивает Colab (за рубежом): Telegram (ограничен в РФ с 01.04.2026), Google News (заблокирован в РФ)
+# comments: true — забирать КОММЕНТАРИИ под постами (кейс Родимцевой был именно в комментариях у губернатора)
+# Новые паблики система находит сама (поиск ВК + «снежный ком») и кладёт в «Кандидаты» — одобряются в GUI/боте.
+
+groups:
+  - name: Губернаторы — стены и комментарии (главный канал жалоб)
+    kind: vk_wall
+    tier: hot
+    category: governor
+    comments: true
+    where: server
+    sources:
+      - {handle: a_beglov, title: "Александр Беглов — ВК (губернатор СПб)", region: SPB, verified: true}      # ✓ подтверждено PR
+      - {handle: drozdenko_a, title: "Александр Дрозденко — ВК (губернатор ЛО)", region: LO, verified: true}  # ✓ lenobl.ru + кейс Лампо
+
+  - name: Власть и надзор — ВК
+    kind: vk_wall
+    tier: hot
+    category: official
+    comments: true
+    where: server
+    sources:
+      - {handle: pravitelstvo_lenobl, title: "Администрация Ленобласти — ВК", region: LO, verified: true}     # ✓ подтверждено PR
+      - {handle: gilnadzor_lenoblast, title: "Госжилнадзор Ленобласти — ВК", region: LO, verified: true}     # ✓ подтверждено PR, тегали в кейсе Лампо
+      - {handle: mo_murino, title: "Администрация Мурино — ВК", region: LO, verified: true}                  # ✓ подтверждено PR
+      - {handle: vsev_reg, title: "Администрация Всеволожского МО — ВК", region: LO, verified: true}         # ✓ подтверждено PR
+
+  - name: СМИ и паблики — ВК
+    kind: vk_wall
+    tier: warm
+    category: media
+    comments: true
+    where: server
+    sources:
+      - {handle: spbdnevnik, title: "Петербургский дневник — ВК", region: SPB, verified: true}   # ✓ spbdnevnik.ru
+      - {handle: online47, title: "Online47 — ВК", region: LO, verified: true}                    # ✓ online47.ru
+      - {handle: zaks_ru, title: "ЗакС.ру — ВК", region: SPB, verified: true}                     # ✓ zaks.ru
+      - {handle: kudrovo24, title: "Кудрово 24 — ВК", region: LO, category: public, verified: true}  # ✓ vk.ru/kudrovo24
+      - {handle: kudrovolife, title: "Жизнь в Кудрово — ВК", region: LO, category: public, verified: true}  # ✓ подтверждено PR
+
+  - name: Губернаторы и власть — Telegram
+    kind: tg_channel
+    tier: hot
+    category: official
+    where: colab
+    sources:
+      - {handle: drozdenko_au_lo, title: "Дрозденко — Telegram", region: LO, category: governor, verified: true}  # ✓ lenobl.ru
+      - {handle: a_beglov, title: "Беглов — Telegram", region: SPB, category: governor, verified: true}           # ✓ t.me/a_beglov
+      - {handle: lenobladminka, title: "Правительство ЛО — Telegram", region: LO, verified: true}                  # ✓ lenobl.ru
+      - {handle: gilnadzor_lenobl47, title: "Госжилнадзор ЛО — Telegram", region: LO, verified: true}              # ✓ ghi.lenobl.ru
+      - {handle: gzhi_spb, title: "ГЖИ СПб — Telegram", region: SPB, verified: true, note: "с весны 2026 постит в Max"}
+      - {handle: gilcomitet, title: "Жилищный комитет СПб — Telegram", region: SPB, verified: true}
+
+  - name: Локальные каналы наших районов — Telegram
+    kind: tg_channel
+    tier: hot
+    category: public
+    where: colab
+    sources:
+      - {handle: tmurino, title: "Горячие новости Мурино I Девяткино", region: LO, verified: true}   # ✓ t.me/s/tmurino
+      - {handle: telekudrovo, title: "Жизнь в Кудрово", region: LO, verified: true}                    # ✓ t.me/s/telekudrovo
+      - {handle: lampovozrozhdeniesz, title: "УК «Возрождение СЗ» (ЖК Лампо) — наш канал", region: LO, category: own, verified: true}  # собственный канал: контекст для ИИ, не алерты
+
+  - name: СМИ — Telegram
+    kind: tg_channel
+    tier: warm
+    category: media
+    where: colab
+    sources:
+      - {handle: dnevspb, title: "Петербургский дневник — Telegram", region: SPB, verified: true}  # ✓ spbdnevnik.ru
+      - {handle: online47news, title: "Online47 — Telegram", region: LO, verified: true}            # ✓ online47.ru
+      - {handle: zaksru, title: "ЗакС.ру — Telegram", region: SPB, verified: true}                  # ✓ zaks.ru
+
+  - name: СМИ Петербурга и Ленобласти — RSS
+    kind: rss
+    tier: warm
+    category: media
+    where: server
+    sources:
+      - {handle: "https://www.fontanka.ru/rss-feeds/rss.xml", title: "Фонтанка", region: SPB, verified: true}   # ✓ RSS 2.0
+      - {handle: "https://moika78.ru/feed/", title: "Мойка78", region: SPB, verified: true}                     # ✓ RSS 2.0
+      - {handle: "https://47news.ru/rss/", title: "47news", region: LO, verified: true}                          # ✓ RSS
+      # ниже — главные страницы: лента находится автоматически (<link rel=alternate> или типовые пути)
+      - {handle: "https://78.ru/", title: "78.ru", region: SPB}
+      - {handle: "https://www.spbdnevnik.ru/", title: "Петербургский дневник", region: SPB}
+      - {handle: "https://www.dp.ru/", title: "Деловой Петербург", region: SPB}
+      - {handle: "https://online47.ru/", title: "Online47", region: LO}
+      - {handle: "https://www.zaks.ru/", title: "ЗакС.ру", region: SPB}
+      - {handle: "https://47channel.ru/", title: "47 канал", region: LO}
+      - {handle: "https://neva.today/", title: "Нева Today", region: SPB}
+      - {handle: "https://tvspb.ru/", title: "Телеканал Санкт-Петербург", region: SPB}
+      - {handle: "https://spbnews78.ru/", title: "Лента новостей СПб", region: SPB}
+      - {handle: "https://peterburg2.ru/", title: "Петербург 2", region: SPB}
+      - {handle: "https://nevnov.ru/", title: "Невские новости", region: SPB}
+      - {handle: "https://lenizdat.ru/", title: "Лениздат", region: SPB}
+
+  - name: Официальные сайты — новости
+    kind: rss
+    tier: cold
+    category: official
+    where: server
+    sources:
+      - {handle: "https://mo-murino.ru/", title: "Администрация Мурино", region: LO}
+      - {handle: "https://www.vsevreg.ru/", title: "Администрация Всеволожского района", region: LO}
+      - {handle: "https://ghi.lenobl.ru/ru/news/", title: "Госжилнадзор ЛО — новости", region: LO}
+      - {handle: "https://lenobl.ru/", title: "Правительство Ленобласти — сайт", region: LO}
+
+  - name: Заблокированные в РФ СМИ (через Colab)
+    kind: rss
+    tier: warm
+    category: media
+    where: colab
+    sources:
+      - {handle: "https://paperpaper.io/", title: "Бумага", region: SPB}
+
+  - name: Госпорталы жалоб (включить после настройки селекторов в GUI)
+    kind: web
+    tier: cold
+    category: official
+    where: server
+    enabled: 0
+    sources:
+      - handle: "https://gorod.gov.spb.ru/"
+        title: "Наш Санкт-Петербург (жалобы по адресам)"
+        region: SPB
+        note: "доступен только с российских IP; задайте URL страницы дома и CSS-селекторы (meta.item/title/text/link)"

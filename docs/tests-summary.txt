@@ -1,0 +1,17 @@
+2026-11-05 / Python 3.12.14
+Baseline: 310 tests, 298 passed, 12 failed.
+Handover: 316 tests, 304 passed, 12 failed.
+New failures: none.
+
+FAILED tests/test_foreign_house.py::test_incident_night_is_quiet
+FAILED tests/test_foreign_house.py::test_without_neighbor_record_it_is_registry_check_held_till_morning
+FAILED tests/test_foreign_house.py::test_same_case_inheritance[text0-True]
+FAILED tests/test_foreign_house.py::test_same_case_inheritance[text1-True]
+FAILED tests/test_foreign_house.py::test_same_case_inheritance[text3-False]
+FAILED tests/test_foreign_house.py::test_same_case_inheritance[text4-False]
+FAILED tests/test_foreign_house.py::test_same_case_inheritance[text5-False]
+FAILED tests/test_foreign_house.py::test_take_in_work_is_not_white_but_ours_is
+FAILED tests/test_foreign_house.py::test_reconciler_lowers_repost_that_came_before_root
+FAILED tests/test_foreign_house.py::test_false_positive_root_and_undo
+FAILED tests/test_foreign_house.py::test_not_ours_and_our_building_buttons
+FAILED tests/test_foreign_house.py::test_trial_week_morning_summary_and_case_audit

@@ -1,0 +1,30 @@
+[Unit]
+Description=Baltdom Radar mention monitoring
+After=network-online.target ollama.service
+Wants=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=radar
+Group=radar
+WorkingDirectory=/opt/radar
+Environment=PYTHONUNBUFFERED=1 TZ=Europe/Moscow
+Environment=HOST=127.0.0.1 RADAR_DATA_DIR=/opt/radar/data
+Environment=RADAR_ENV_FILE=/etc/radar/radar.env
+Environment=NICEGUI_STORAGE_PATH=/opt/radar/data/nicegui
+ExecStartPre=/opt/radar/.venv/bin/python /opt/radar/tools/preflight.py
+ExecStart=/opt/radar/.venv/bin/python /opt/radar/run.py
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=90
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/radar/data /opt/radar/config
+
+[Install]
+WantedBy=multi-user.target

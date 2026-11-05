@@ -1,0 +1,79 @@
+# Основные настройки Радара. Секреты (токены, пароли) — только в .env.
+# Большинство параметров можно менять на лету в GUI → «Настройки» или в боте: /set schedule.hot_minutes 5
+
+company: "ГК «Балтийский Дом»"
+public_url: ""                  # https://radar.ваш-домен.ru — для ссылок в письмах и для Colab
+gui_port: 8080
+
+schedule:
+  hot_minutes: 5                # губернаторы, надзор, инфлюенсеры, локальные каналы Мурино/Кудрово
+  warm_minutes: 15              # поиск по ВК, СМИ, остальные паблики
+  cold_minutes: 180             # официальные сайты, «доктор источников»
+  reports: ["09:00", "14:00", "19:00"]   # МСК; отчёт уходит всегда, даже если упоминаний ноль
+  weekly_report: "MON 09:30"
+  track_hours: 48               # сколько следим за ростом реакций у значимых постов
+
+alerts:
+  instant_priorities: [P1, P2]  # мгновенные алерты; P3 — в отчётах
+  escalate_after_min: 15        # P1 не взяли в работу → повтор + руководителям
+  max_escalations: 4
+  telegram_fail_to_relay_after: 3
+  cleanup_false_min: 30         # «❌ Ложное» / «⚪ Снято» — убрать карточку из чатов Telegram и Max через N минут (0 — не убирать)
+  cleanup_resolved_min: 120     # «🟢 Решено» — через N минут; до этого на карточке есть «↩️ Вернуть»
+
+risk:
+  influencer_followers: 5000
+  p1_score: 70
+  p2_score: 45
+  p3_score: 20
+  velocity_hot_per_hour: 30
+  street_cap: P3                # наша улица без номера дома — район, а не наш дом: в отчёт, без алерта
+  street_dense: []              # улицы, где почти все дома наши: там «улица без дома» → P2 (напр. ["Графская"])
+
+story:                          # «та же история»: перепосты и пересказы отмеченной публикации
+  verdict_days: 30              # «❌ Ложное» гасит копии истории столько дней (даже с нашим адресом)
+  resolved_hours: 72            # «🟢 Решено» — столько часов; «опять», «снова» в копии — новая авария, придёт
+  verdict_copy_min: 0.6         # с нашим адресом — только почти дословная копия (доля совпадающих триграмм)
+
+brain:
+  colab_offline_after_sec: 180
+  p1_max_wait_sec: 120          # срочное ждёт Colab максимум 2 мин, дальше — локальная модель
+  normal_max_wait_sec: 1200
+  upgrade_hours: 24
+  pii_masking: true             # телефоны/почта/номера квартир и имена «обычных» авторов не уходят в Colab
+  agent_max_rounds: 2
+  local:                        # страховочная модель на сервере (CPU, 24/7) — через Ollama
+    enabled: true
+    kind: ollama
+    base_url: "http://127.0.0.1:11434"
+    model: "hf.co/google/gemma-4-E4B-it-qat-q4_0-gguf"
+    timeout: 180
+
+vk:
+  api_version: "5.199"
+  api_bases: ["https://api.vk.com/method", "https://api.vk.ru/method"]
+  rps: 2.5
+  search_daily_budget: 900
+  comments_lookback_hours: 72
+  posts_per_wall: 20
+
+network:
+  telegram_proxy: null          # если Bot API из РФ не проходит: "socks5://user:pass@host:1080"
+  http_proxy_foreign: null
+
+report_emails: []               # ["pr@dombalt.ru", "director@dombalt.ru"]
+
+# Max — общий с Telegram журнал решений; без MAX_BOT_TOKEN ветка выключена.
+max:
+  enabled: true
+  api_url: https://platform-api2.max.ru
+  mode: polling
+  poll_timeout: 30
+  fallback_from_tg: true
+  only_when_tg_down: false
+  direct_messages: true
+  report_files: false
+  pin_p1: false
+  ca_bundle: ""          # путь к проверенному PEM доверенного УЦ; проверка TLS всегда включена
+  webhook_url: ""        # по умолчанию public_url + /api/max/webhook
+  events: [p1, p2, esc, digest, story, rep_morning, rep_weekly, service]

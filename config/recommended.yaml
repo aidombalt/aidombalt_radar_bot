@@ -1,0 +1,207 @@
+# Рекомендованный набор источников — «откуда может рвануть». Собран и сверен 24.09.2026.
+# Ставится в GUI: «Источники» → «Рекомендованный набор» → галочки → «Проверить и добавить».
+# Перед добавлением Радар сам открывает каждую ссылку (ВК API / t.me): мёртвые и несуществующие не добавляются.
+#   prio 1 — обязательно (отмечены по умолчанию) · 2 — полезно · 3 — по желанию
+#   для ВК держим «каждые 15 мин»: у ключа ВК суточный лимит wall.get ≈ 5000 вызовов
+#   category own — наши группы УК: посты УК — контекст, жалобы жителей в комментариях — сигнал (алерт только при угрозе огласки)
+
+groups:
+  - name: "Эскалация: СК, Генпрокуратура, Народный фронт"
+    note: "Классика 2025–26: жалоба в ВК → «Председатель СК поручил доложить» (адрес есть, УК не названа) → СМИ за 1–4 ч дописывают УК."
+    region: ""
+    category: official
+    tier: hot
+    items:
+      - {link: "t.me/infocentrskrf", title: "Информационный центр СК России", prio: 1,
+         why: "«Бастрыкин поручил доложить…» по конкретным домам СПб/ЛО; по Мурино — 11.2025, 02.2026, 05.2026, 09.2026"}
+      - {link: "vk.com/infocentrskrf", title: "Информационный центр СК России — ВК (комментарии)", prio: 1, tier: warm, comments: true,
+         why: "«приёмная Бастрыкина»: жители пишут жалобы в комментариях — так началось дело о смене УК в Мурино (02.2026)"}
+      - {link: "t.me/sledcom_press", title: "Следком — официальный канал СК РФ", prio: 1, tier: warm,
+         why: "тоже публикует «поручил доложить»; жилищные права — текущий приоритет СК"}
+      - {link: "t.me/onf_front", title: "Народный фронт", prio: 2, tier: warm,
+         why: "региональная жалоба в федеральной повестке ОНФ = федеральная история"}
+      - {link: "vk.com/nf_spb", title: "Народный фронт | Санкт-Петербург", prio: 2, tier: warm, region: SPB, comments: true,
+         why: "собирает жалобы на ЖКХ и пересылает в ГЖИ/прокуратуру"}
+      - {link: "t.me/minstroyrf", title: "Минстрой России", prio: 3, tier: cold,
+         why: "когда частный случай становится нормой (лицензии, голосования в ГИС ЖКХ)"}
+      - {link: "t.me/vv_volodin", title: "Вячеслав Володин", prio: 3, tier: warm,
+         why: "регулярно атакует практики УК; упоминание = законопроект и шум"}
+
+  - name: "Власть и надзор по ЖКХ — Петербург"
+    region: SPB
+    category: official
+    tier: hot
+    items:
+      - {link: "t.me/razumishkin", title: "Разумишкин — вице-губернатор СПб по ЖКХ", prio: 1,
+         why: "курирует ГЖИ и Жилкомитет; его пост про УК = поручение ГЖИ, часто лицензионное дело"}
+      - {link: "vk.com/gzhispb", title: "ГЖИ Санкт-Петербурга — ВК", prio: 1, tier: warm, comments: true,
+         why: "проверки, лишение лицензий (69 за начало 2026), ответы жителям; поддельные протоколы ОСС"}
+      - {link: "vk.com/gilcomitet", title: "Жилищный комитет СПб — ВК", prio: 2, tier: warm, comments: true,
+         why: "отопительный сезон, официальные ответы; телеграм-канал уже отслеживается"}
+      - {link: "vk.com/mchs_st.peterburg", title: "ГУ МЧС по Санкт-Петербургу — ВК", prio: 1, tier: warm,
+         why: "пожары, эвакуации, застрявшие лифты по адресам; телеграм МЧС СПб закрыт (ушли в Max)"}
+      - {link: "t.me/ombudsmanspb", title: "Уполномоченный по правам человека в СПб", prio: 3, tier: cold,
+         why: "редко, но в докладах и делах уязвимых жильцов называют УК"}
+
+  - name: "Власть и надзор по ЖКХ — Ленобласть"
+    region: LO
+    category: official
+    tier: hot
+    items:
+      - {link: "vk.com/club192658958", title: "Комитет по ЖКХ Ленобласти — ВК", prio: 1, tier: warm, comments: true,
+         why: "отопление, вода, аварии по домам Мурино/Кудрово; жители пишут в комментарии"}
+      - {link: "t.me/komitet_gkhlo", title: "Комитет по ЖКХ Ленобласти — Telegram", prio: 3,
+         why: "дублирует ВК"}
+      - {link: "vk.com/gu_mchs_lenoblasti", title: "ГУ МЧС по Ленобласти — ВК", prio: 1, tier: warm,
+         why: "пожары и эвакуации в новостройках Всеволожского района (7.09 — 42 эвакуированных на Авиаторов Балтики)"}
+      - {link: "vk.com/lenoblzaks", title: "Законодательное собрание Ленобласти — ВК", prio: 3, tier: cold,
+         why: "новый созыв после выборов 09.2026: депутатские запросы по ЖКХ"}
+
+  - name: "Мурино и Девяткино — где стартуют истории"
+    note: "Путь кейса Лампо (07.2026): «Девяткино онлайн» (24,5 тыс. просмотров, призыв к репостам и отметкам губернатора) → 47news/Фонтанка → губернатор."
+    region: LO
+    category: public
+    tier: hot
+    items:
+      - {link: "t.me/news9online", title: "Девяткино онлайн | Мурино", prio: 1,
+         why: "крупнейший канал Мурино (59 тыс.); главный усилитель кейса Лампо; прямо называет наши УК (Виктория, Форвард)"}
+      - {link: "vk.com/club60463565", title: "Девяткино онлайн | Мурино — ВК", prio: 1, tier: warm, comments: true,
+         why: "ВК-стена, которую репостит канал; в комментариях — сырые жалобы"}
+      - {link: "t.me/podslushano_v_murino", title: "Подслушано в Мурино || Девяткино", prio: 1,
+         why: "анонимные жалобы с названием УК (15,5 тыс.)"}
+      - {link: "vk.com/tmurino", title: "Типичное Мурино/Девяткино — ВК", prio: 1, tier: warm, comments: true,
+         why: "ВК-двойник «Горячих новостей Мурино»: жалобы по Цвета Радуги (вода, отопление, крысы)"}
+      - {link: "t.me/murino_novosti", title: "Девяткино LIVE | Мурино", prio: 1,
+         why: "Фонтанка и 47news берут как источник"}
+      - {link: "vk.com/9kino.live", title: "Девяткино LIVE | Мурино — ВК", prio: 2, tier: warm, comments: true,
+         why: "ВК-версия Девяткино LIVE"}
+      - {link: "t.me/lifeinmurino", title: "Живём в Мурино | м. Девяткино", prio: 2,
+         why: "бот для новостей от жителей, проверки прокуратуры по УК"}
+      - {link: "vk.com/top_murino", title: "Мурино — ВК", prio: 2, tier: warm,
+         why: "городской паблик (сеть top_*)"}
+      - {link: "vk.com/spb_viktoriya", title: "ЖК Виктория | Мурино — ВК", prio: 2, tier: warm, comments: true,
+         why: "единственная ВК-группа с именем нашего ЖК; владелец неизвестен"}
+      - {link: "vk.com/murino_infrastruktura", title: "Инфраструктура Западного Мурино", prio: 1, tier: warm, comments: true,
+         category: influencer, why: "активисты; из их группы разошлось видеообращение по Лампо (кейс Родимцевой)"}
+      - {link: "vk.com/club202159671", title: "Сергей Галиновский — глава МО Мурино", prio: 1, tier: warm, comments: true,
+         category: official, why: "отвечает на конфликты жителей; жалобы на УК несут ему в комментарии"}
+      - {link: "t.me/mo_murino", title: "Совет депутатов Мурино — Telegram", prio: 2, tier: warm, category: official,
+         why: "решения по ЖКХ, приёмы депутатов"}
+      - {link: "t.me/tutmurino", title: "ТУТ МУРИНО", prio: 2, tier: warm, category: influencer,
+         why: "«народные рейтинги» ЖК — плохая оценка УК расходится отсюда"}
+      - {link: "https://www.vsevdevyatkino.ru/rss/feed/news?category=", title: "Все в Девяткино — новости", prio: 2, tier: warm,
+         category: media, why: "портал: писал про удвоение платёжек и споры с УК в Мурино"}
+      - {link: "t.me/nizovskiy_a", title: "Андрей Низовский — депутат ЗакС ЛО", prio: 3, tier: warm, category: official,
+         why: "новый депутат по Бугровскому округу (восток Мурино), пишет о перегрузке Мурино"}
+
+  - name: "Кудрово — ЖК «Прогресс»"
+    region: LO
+    category: public
+    tier: hot
+    items:
+      - {link: "t.me/dtp_chp_kudrovo1", title: "ДТП и ЧП Кудрово", prio: 1,
+         why: "16 тыс.; посты по Европейскому 13 (поджоги во дворе, парковка, отопление от Теплосети)"}
+      - {link: "vk.com/top_kudrovo", title: "Кудрово — ВК", prio: 2, tier: warm, why: "городской паблик"}
+      - {link: "https://www.zanevkasmi.ru/feed/", title: "Заневский вестник", prio: 2, tier: cold, category: media,
+         why: "муниципальная газета Кудрово: смена руководства, ЖКХ"}
+      - {link: "https://www.zanevkaorg.ru/feed/", title: "Заневское городское поселение", prio: 3, tier: cold, category: official,
+         why: "отключения, благоустройство"}
+
+  - name: "Сертолово — ЖК «Юбилей»"
+    region: LO
+    category: public
+    tier: hot
+    items:
+      - {link: "t.me/sertolovoonline", title: "Сертолово онлайн", prio: 1,
+         why: "главный канал; писал про пожар на Ларина 15 к.1 и отслаивающийся фасад новостройки"}
+      - {link: "vk.com/sertolovoonline", title: "Сертолово онлайн — ВК", prio: 1, tier: warm, comments: true,
+         why: "основная ВК-площадка Сертолово"}
+      - {link: "vk.com/top.sertolovo", title: "Сертолово — ВК", prio: 3, tier: warm, why: "городской паблик"}
+
+  - name: "Солнечный город (Красносельский) — самая горячая точка СПб"
+    note: "История с перерасчётом (дело А56-122433/2023, квитанции 11–24 тыс. ₽) ушла из канала ЖК в ФедералПресс, Мойку78 и YouTube («Мамы против… УК Цивилизация»)."
+    region: SPB
+    category: public
+    tier: hot
+    items:
+      - {link: "t.me/sgnevs", title: "Солнечный город Новости", prio: 1,
+         why: "канал жителей: платёжки УК «Цивилизация», встречи с прокуратурой, долги"}
+      - {link: "vk.com/sitysun", title: "Солнечный город — дольщики и жители (ВК)", prio: 1, tier: warm, comments: true,
+         why: "ВК-двойник канала жителей"}
+      - {link: "vk.com/jk_solnechnyi_gorod", title: "ЖК Солнечный город — ВК", prio: 2, tier: warm, comments: true,
+         why: "группа жителей, которую цитировали СМИ; проверить, жива ли"}
+      - {link: "vk.com/club1880", title: "Юго-Запад СПб (Красносельский и Кировский)", prio: 1, tier: warm, comments: true,
+         why: "старейший паблик юго-запада: Солнечный город и Монплезир (Ленинский 114)"}
+      - {link: "t.me/Sosnovaya_Polyana_39", title: "МО Сосновая Поляна", prio: 2, tier: warm, category: official,
+         why: "муниципалитет, где стоит Солнечный город"}
+      - {link: "vk.com/club216315397", title: "МО Сосновая Поляна — ВК", prio: 2, tier: warm, category: official, comments: true,
+         why: "жители пишут муниципалам в комментарии"}
+      - {link: "t.me/setlcommunity_solngorod", title: "SetlКомьюнити «Солнечный город. Резиденции»", prio: 3, tier: warm,
+         why: "канал застройщика; трения по гарантии всплывают и здесь"}
+
+  - name: "Районы Петербурга с нашими домами"
+    region: SPB
+    category: public
+    tier: warm
+    items:
+      - {link: "t.me/primorsky_spb", title: "Приморский район Спб", prio: 1, tier: hot,
+         why: "21 тыс.; Торфяная дорога (Артлайн) и Серебристый б-р — частые темы"}
+      - {link: "vk.com/primorskij_rajon", title: "Приморский район — ВК", prio: 2, category: official, why: "администрация района"}
+      - {link: "t.me/vyborgsky_spb", title: "Выборгский район Спб", prio: 2,
+         why: "Манчестерская (Светлана Парк), Художников, Шостаковича"}
+      - {link: "t.me/kalininsky_spb", title: "Калининский район Спб", prio: 2, why: "постоянный автор с Ушинского"}
+      - {link: "t.me/krg_spb", title: "Красногвардейка Спб", prio: 3, why: "Екатерининский пр. 2, Ленская 6"}
+      - {link: "vk.com/club.kirnews", title: "Администрация Кировского района — ВК", prio: 2, category: official,
+         why: "Монплезир; телеграм администрации мёртв с 04.2026"}
+      - {link: "vk.com/frunzr", title: "Фрунзенский район — ВК", prio: 2, category: official, why: "ЖК София, Олеко Дундича"}
+      - {link: "t.me/pavelshvets72", title: "Павел Швец — Купчино", prio: 3, category: influencer,
+         why: "активист МО №72 рядом с ЖК София"}
+      - {link: "vk.com/moykrasnoselsky", title: "Мой Красносельский — ВК", prio: 3, why: "районный паблик, название уточнит проверка"}
+
+  - name: "Вирусные усилители — где история становится городской"
+    note: "Mash на Мойке — 100–150 тыс. просмотров на видео жителей; УК часто не названа («управляйка») — ловим по адресу и ЖК."
+    region: SPB
+    category: media
+    tier: warm
+    items:
+      - {link: "t.me/mashmoyka", title: "Mash на Мойке", prio: 1, tier: hot,
+         why: "главный вирусный канал СПб: Цвета Радуги, лифт на Шувалова, паркинг и плесень в Солнечном городе"}
+      - {link: "t.me/fontankaspb", title: "Фонтанка SPB Online — Telegram", prio: 1,
+         why: "жалобы читателей идут в телеграм раньше сайта (Артлайн без света 11 ч, 12.2025)"}
+      - {link: "t.me/good78news", title: "78 | НОВОСТИ", prio: 2, why: "регулярно: жители против УК"}
+      - {link: "t.me/dtp_spb78", title: "ДТП И ЧП СПб", prio: 2, why: "108 тыс.; потопы, лифты от очевидцев"}
+      - {link: "vk.com/spb_today", title: "ДТП и ЧП | Санкт-Петербург — ВК", prio: 2, why: "крупнейший паблик происшествий"}
+      - {link: "t.me/bazabazon", title: "Baza", prio: 2, region: "", why: "подхватывает после Mash — это уже федеральный уровень"}
+      - {link: "https://gazeta.spb.ru/rss/", title: "Газета СПб", prio: 2, why: "пишет про иски прокуратуры к УК"}
+      - {link: "https://kanoner.com/", title: "Канонер", prio: 2, why: "новостройки и конфликты с УК/застройщиками"}
+      - {link: "vk.com/kanoner", title: "Канонер — ВК", prio: 3, why: "ВК-версия"}
+      - {link: "https://spb.aif.ru/rss/all.php", title: "АиФ-Петербург", prio: 3, why: "городская лента"}
+      - {link: "t.me/ostorozhno_novosti", title: "Осторожно, новости", prio: 3, region: "", why: "федеральный, только при вирусе"}
+      - {link: "t.me/toporlive", title: "Топор Live", prio: 3, region: "", why: "федеральный, только при вирусе"}
+      - {link: "t.me/shot_shot", title: "SHOT", prio: 3, region: "", why: "федеральный, только при вирусе"}
+      - {link: "t.me/lentv24", title: "ЛенТВ24", prio: 3, region: LO, why: "официальная реакция области"}
+
+  - name: "Наши группы УК — жалобы жителей в комментариях"
+    note: "Первое место, куда пишут недовольные. Посты УК — контекст; комментарий с жалобой → в отчёт; с угрозой огласки (губернатор, прокуратура, СМИ, «репост») → алерт P2."
+    category: own
+    tier: warm
+    comments: true
+    items:
+      - {link: "vk.com/ykprimorskidom", title: "УК «Приморский Дом» — ВК", prio: 1, region: LO, company: primdom,
+         why: "Виктория, Цвета Радуги, Форвард, Юбилей"}
+      - {link: "vk.com/public196834703", title: "УК «Этажи» | ЖК «Авиатор» — ВК", prio: 1, region: LO, company: etazhi, zhk: aviator,
+         why: "Авиатор: исторически конфликт по оплате охраны (Mash, 2020)"}
+      - {link: "vk.com/houseurbanistetazhi", title: "УК «Этажи» | ЖК «Урбанист» — ВК", prio: 1, region: LO, company: etazhi, zhk: urbanist,
+         why: "Урбанист"}
+      - {link: "vk.com/public196045456", title: "УК «Цивилизация» | Солнечный город — ВК", prio: 1, region: SPB, company: civilization, zhk: sungorod,
+         why: "эпицентр истории с перерасчётом"}
+      - {link: "vk.com/public204230716", title: "УК «Цивилизация» | Артлайн — ВК", prio: 1, region: SPB, company: civilization, zhk: artline,
+         why: "Артлайн: отключение света на 11 ч (12.2025) ушло в Фонтанку"}
+      - {link: "vk.com/svetlanacivilizacia", title: "УК «Цивилизация» | Светлана Парк — ВК", prio: 2, region: SPB, company: civilization, zhk: svetlana,
+         why: "Светлана Парк"}
+      - {link: "vk.com/housestatuscivilization", title: "УК «Цивилизация» | Статус у Парка Победы — ВК", prio: 2, region: SPB,
+         company: civilization, zhk: status, why: "Статус у Парка Победы"}
+      - {link: "vk.com/philosofiya_uk", title: "УК «Цивилизация» | Философия на Московской — ВК", prio: 2, region: SPB,
+         company: civilization, zhk: philosophy, why: "Философия на Московской"}
+      - {link: "vk.com/sofia_piter", title: "УК «София» — ВК", prio: 2, region: SPB, company: sofia, zhk: sofia_zhk,
+         why: "ЖК София, Южное шоссе"}
