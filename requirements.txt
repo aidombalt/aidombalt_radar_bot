@@ -1,0 +1,16 @@
+# Сервер Радара (Python 3.11+). Проверено 23.09.2026.
+nicegui==3.17.1
+aiogram==3.31.0
+httpx==0.28.1
+pydantic==2.13.5
+PyYAML>=6.0
+openpyxl==3.1.5
+python-docx==1.2.0
+feedparser==6.0.14
+selectolax==0.4.12
+rapidfuzz==3.14.6
+pymorphy3==2.0.6
+pymorphy3-dicts-ru
+tzdata                 # часовые пояса на Windows
+socksio==1.0.0          # SOCKS для HTTPX (при использовании прокси)
+aiohttp-socks==0.11.0  # прокси Telegram Bot API (aiogram)
